@@ -1,0 +1,153 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+html {
+	overflow: visible;
+	background-image: url("../bg2.jpg");
+	min-height: 100%; 
+	-webkit-background-size : cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+fieldset, img {
+	border: 0;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+	font-style: normal;
+	font-weight: normal;
+}
+ol, ul {
+	list-style: none;
+}
+caption, th {
+	text-align: left;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+q:before, q:after {
+	content: '';
+}
+abbr, acronym {
+	border: 0;
+}
+body {
+	font-size: small;
+	background-position: top;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
+h1 {
+	font-size: 160%;
+	font-weight: bold;
+	color: #444;
+	text-shadow: 0 1px 0 #fff;
+	text-align: center;
+}
+h2 {
+	display: block;
+	line-height: 1.4;
+}
+p {
+	font-size: 100%;
+	line-height: 1.4em;
+	text-shadow: 0 1px 0 #fff;
+	margin: 0 0 1.4em 0;
+}
+.container {
+	margin: 0;
+	border: 1px solid black;
+	background-color: rgba(70,128,128,0.6);
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 10px 20px 10px 20px;
+	display: inline-block;
+}
+.number {
+	display: inline-block;
+	width: 130px;
+	height: 200px;
+	background-image: url(../number.png);
+}
+.numberS {
+	display: inline-block;
+	width: 39px;
+	height: 60px;
+	background-image: url(../number_s.png);
+}
+.slider {
+	margin: 0 12px 0 12px;
+}
+#sampleNumber {
+	display: inline-block;
+	position: absolute;
+	width: 462px;
+}
+#dashBoard {
+	text-align: center;
+	width: 420px;
+}
+#setting {
+	position: absolute;
+	top: 35px;
+	right: 40px;
+}
+#sampleName {
+	display: inline-block;
+	position: absolute;
+	width: 462px;
+	opacity: 0;
+}
+#sampleChart {
+	text-align: center;
+	width: 420px;
+}
+#configuration {
+	opacity: 0;
+}
+#systemVolumeNumber {
+	height: 65;
+}
+.sectionTitle {
+	width: 100%;
+	height: 25px;
+	padding: 10px 0 10px 0;
+}
+.tubeStrip {
+	width: 420px;
+	background-image: url(../tube_strip.png);
+	background-position: 0px 65px;
+	height: 60px;
+}
+.tubeStripNumber {
+	width: 420px;
+	background-image: url(../tube_strip.png);
+	height: 60px;
+}
+/* Button start*/
+.button {
+	opacity: 0.3;
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+}
+.button:hover {
+	opacity: 1;
+}
+.button:active {
+	bottom: -1px;
+	opacity: 1;
+}
+.button.plusSub {
+	width: 33px;
+	height: 36px;
+	padding: 0 20px 10px 20px;
+}

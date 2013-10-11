@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>PCR Calculator</title>
+		<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.18.custom.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<script src="jquery-1.7.1.js"></script>
+		<script src="js/jquery-ui-1.8.14.custom.min.js"></script>
+		<script src="js/custom.js"></script>
+	</head>
+	<body>
+		<div id="sampleNumber">
+			<div class="button" id="setting">
+				<img src="setting.png" width="30" height="30" alt="">
+			</div>
+			<div class="container" id="dashBoard">
+				<div class="button plusSub" id="subNumber">
+					<img src="minus.png" width="33" height="36" alt="">
+				</div>
+				<div id="firstNumber" class="number"></div>
+				<div id="secondNumber" class="number"></div>
+				<div class="button plusSub" id="plusNumber">
+					<img src="plus.png" width="33" height="36" alt="">
+				</div>
+				<div id="valueSlider" class="slider"></div>
+				<div id="configuration" class="hiddenInViewSource">
+					<div class="sectionTitle"><img src="add_control.png" alt="">
+					</div>
+					<div id="controlSample">
+						<input type="checkbox" id="positiveControl" value="1"/>
+						<label for="positiveControl">Include Positive Control</label>
+						<input type="checkbox" id="negativeControl" value="1"/>
+						<label for="negativeControl">Include Negative Control</label>
+					</div>
+					<div class="sectionTitle"><img src="master_mix_type.png" alt="">
+					</div>
+					<div id="masterMix">
+						<input type="radio" id="radiom_1" name="masterMix" checked="checked"/>
+						<label for="radiom_1">Promega</label>
+						<input type="radio" id="radiom_2" name="masterMix" />
+						<label for="radiom_2">Lucigen</label>
+						<input type="radio" id="radiom_3" name="masterMix" />
+						<label for="radiom_3">NBL</label>
+						<input type="radio" id="radiom_4" name="masterMix" />
+						<label for="radiom_4">Sperated Ingredients</label>
+					</div>
+					<div class="sectionTitle"><img src="system_volume.png" alt="">
+						
+					</div>
+					<div id="systemVolumeNumber">
+						<div id="firstNumberSV" class="numberS"></div>
+						<div id="secondNumberSV" class="numberS"></div>
+						<div id="thirdNumberSV" class="numberS"></div>
+					</div>
+					
+					<div id="systemVolume" class="slider"></div>
+					<div class="sectionTitle"><img src="type_of_tube.png" alt="">
+					</div>
+					<div id="pcrTubeType">
+						<input type="radio" id="radiop_1" name="productDNA" />
+						<label for="radiop_1">0.2 ml Tubes</label>
+						<input type="radio" id="radiop_2" name="productDNA" checked="checked"/>
+						<label for="radiop_2">8 X 0.2 ml Strips</label>
+						<input type="radio" id="radiop_3" name="productDNA" />
+						<label for="radiop_3">96 well plate</label>
+					</div>
+					<div style="height:15px">
+						&nbsp;
+					</div>
+				</div>
+				<div style="height:15px">
+					&nbsp;
+				</div>
+				<button id="addSamples">
+					Add Names of the Samples
+				</button>
+				<button id="doneNGoToPrint">
+					Done &amp; Go to Print
+				</button>
+			</div>
+		</div>
+		<div id="sampleName">
+			<div id="sampleChart" class="container" >
+				<div class="tubeStripNumber"></div>
+				<div style="height:15px">
+					&nbsp;
+				</div>
+				<div id="samplesRow" summary="no"></div>
+				<div style="height:15px">
+					&nbsp;
+				</div>
+				<button id="setNumber">
+					Change the Number
+				</button>
+				<button id="doneNGoToPrint2">
+					Done &amp; Go to Print
+				</button>
+			</div>
+		</div>
+		<div id="incorrectNumber" title="Incorrect Number" class="hiddenInViewSource">
+			<p>
+				Please Input A Value Between 1 and 96.
+			</p>
+		</div>
+	</body>
+</html>

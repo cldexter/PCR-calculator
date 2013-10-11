@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+.page_content_1 {
+	background: -moz-linear-gradient(center top , white 60%, #E6E6E6 100%) repeat scroll 0 0 white;
+	border: 1px solid white;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 2px 2px 2px #B0AEA6;
+	padding: 10px;
+	width: 470px;
+	height: 200px;
+}
+.form_step {
+	width: 470px;
+}

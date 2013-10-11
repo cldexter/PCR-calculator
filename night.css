@@ -1,0 +1,23 @@
+body {
+	background-color:#FF0000;
+	color:white;
+}
+dt {
+    background: #e3e3e3;
+    color: black;
+    cursor: pointer;
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 2em;
+    border-bottom: 1px solid white;
+    border-top: 1px solid #c5c5c5;
+}
+
+dt:first-child {border-top: none;}
+dt:nth-last-child(2) {border-bottom: none;}
+
+dd {
+	margin: 0;
+	padding: 1em 0;
+} 

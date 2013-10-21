@@ -1,11 +1,9 @@
-/**
- * @author Dexter Chen
- */
-$(function() {
-	/*定义各种变量, 并归零*/
+$(document).ready(function() {
+
+	/*定义各种变量, 并归零*/	
 	var sampleNumber = 0;
 	var firstNumber = 0;
-	var secondNumber = 0;
+	var secondNumber = 1;
 	var firstNumberSV = 0;
 	var secondNumberSV = 5;
 	var thirdNumberSV = 0;
@@ -23,8 +21,9 @@ $(function() {
 
 	/*把组件正确显示出来*/
 	$(".hiddenInViewSource").hide();
-	$("#masterMix").buttonset();
+	$("#masterMixType").buttonset();
 	$("#pcrTubeType").buttonset();
+	$("#templateType").buttonset();
 	$("#positiveControl").button();
 	$("#negativeControl").button();
 	$("#doneNGoToPrint").button();
@@ -53,6 +52,7 @@ $(function() {
 	/*获得样本数量并显示出来*/
 
 	$('#valueSlider').slider({
+		value : 1,
 		min : 1,
 		max : 96
 	});
@@ -96,13 +96,14 @@ $(function() {
 			modal : true,
 			resizable : false
 		});
-	};
+	}
 
 	function displayNumber() {
 
 		rowNumber = Math.ceil(sampleNumber / 8);
 
 		firstNumber = Math.floor(sampleNumber / 10);
+
 		secondNumber = sampleNumber % 10;
 
 		$("#firstNumber").css({
@@ -124,17 +125,17 @@ $(function() {
 		}
 	});
 
-	displaysystemVolume();
+	displayNumberSV();
 
 	$("#systemVolume").slider({
 		change : function(e, ui) {
 			systemVolume = $("#systemVolume").slider("value");
-			displaysystemVolume();
+			displayNumberSV();
 			calculation();
 		}
 	});
 
-	function displaysystemVolume() {
+	function displayNumberSV() {
 
 		firstNumberSV = Math.floor(systemVolume / 100);
 		secondNumberSV = Math.floor(systemVolume / 10);
@@ -151,91 +152,103 @@ $(function() {
 		});
 	}
 
-	/*计算PCR系统中每个变量的值*/
+	/*检测按钮状态*/
 
 	function calculation() {
+		buttonCondition();
+		totalVolume = (sampleNumber + positiveControl) * systemVolume;
+	}
+
+	function buttonCondition() {
 		var positiveControl;
+		var negativeControl;
 		if ($("#positiveControl").attr("checked")) {
-			positiveControl = 1;
+			positiveControl= 1;
 		} else {
 			positiveControl = 0;
 		}
-		totalVolume = (sampleNumber + positiveControl) * systemVolume;
-		console.log(totalVolume, positiveControl);
+		if ($("#negativeControl").attr("checked")) {
+			negativeControl= 1;
+		} else {
+			negativeControl = 0;
+		}
 	}
 
-	/* Animation of window*/
-	$("#setting").on("click", function() {
+		var masterMixType = $("#masterMixType :radio:checked").attr('id');
+		var templateType = $("#templateType :radio:checked").attr('value');
+		var pcrTubeType =$("#pcrTubeType :radio:checked").attr('id');	
 
-		if (settingToggle == 0) {
-			$sampleNumber.animate({
-				top : "-=150"
-			}, 500);
-			$configuration.delay(550).slideDown(500);
-			$configuration.delay(500).animate({
-				opacity : 1
-			}, {
-				queue : false
-			}, 500);
-			settingToggle = 1;
-		} else {
-			$configuration.delay(50).slideUp({
-				queue : false
-			}, 500);
-			$configuration.animate({
-				opacity : 0
-			}, {
-				queue : false
-			}, 500);
-			$sampleNumber.delay(500).animate({
-				top : "+=150"
-			}, 500);
-			settingToggle = 0;
-		}
-	});
-	/* Animation of 3 stage*/
+		/* Animation of window*/
+	
+	    $("#setting").on("click", function() {
 
-	$("#addSamples").on("click", function() {
-		initWindow();
-		if (sampleNumber == 0) {
-			incorrectNumber();
-		} else {
-			generateTable();
-			$sampleNumber.animate({
+			if (settingToggle == 0) {
+				$sampleNumber.animate({
+					top : "-=150"
+				}, 300);
+				$configuration.delay(550).slideDown(500);
+				$configuration.delay(500).animate({
+					opacity : 1
+				}, {
+					queue : false
+				}, 500);
+				settingToggle = 1;
+			} else {
+				$configuration.delay(50).slideUp({
+					queue : false
+				}, 500);
+				$configuration.animate({
+					opacity : 0
+				}, {
+					queue : false
+				}, 500);
+				$sampleNumber.delay(500).animate({
+					top : "+=150"
+				}, 300);
+				settingToggle = 0;
+			}
+		});
+
+		/* Animation of 3 stage*/
+
+		$("#addSamples").on("click", function() {
+			initWindow();
+			if (sampleNumber == 0) {
+				incorrectNumber();
+			} else {
+				generateTable();
+				$sampleNumber.animate({
+					opacity : 0,
+					"left" : "-=500px",
+				}, 500);
+
+				$sampleName.delay(100).animate({
+					opacity : 1,
+					"left" : "-=500px",
+				}, 500);
+			}	
+		});
+
+		$("#setNumber").on("click", function() {
+			$sampleName.animate({
 				opacity : 0,
-				"left" : "-=500px",
+				"left" : "+=500px",
 			}, 500);
 
-			$sampleName.delay(100).animate({
+			$sampleNumber.delay(100).animate({
 				opacity : 1,
-				"left" : "-=500px",
+				"left" : "+=500px",
 			}, 500);
+		});
+
+		/* Generate table */
+		function generateTable() {
+			var rowNumberNow = $("#samplesRow").find("div.tubeStrip").length;
+			for (var r = rowNumberNow; r <= rowNumber; r++) {
+				$("#samplesRow").append('<div class="tubeStrip"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>');
+			};
+			for (var r = rowNumberNow; r > rowNumber; r--) {
+				$("#samplesRow div.tubeStrip:last-child").remove();
+			};
 		}
-	});
-
-	$("#setNumber").on("click", function() {
-		$sampleName.animate({
-			opacity : 0,
-			"left" : "+=500px",
-		}, 500);
-
-		$sampleNumber.delay(100).animate({
-			opacity : 1,
-			"left" : "+=500px",
-		}, 500);
-	});
-
-	/* Generate table */
-	function generateTable() {
-		var rowNumberNow = $("#samplesRow").find("div.tubeStrip").length;
-		for (var r = rowNumberNow; r <= rowNumber; r++) {
-			$("#samplesRow").append('<div class="tubeStrip">
-				<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>');
-		}
-		for (var r = rowNumberNow; r > rowNumber; r--) {
-			$("#samplesRow div.tubeStrip:last-child").remove();
-			console.log("deleted");
-		}
-	};
-
-})/*this is the last bracket*/
+});

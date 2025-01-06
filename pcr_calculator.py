@@ -1,9 +1,4 @@
-import time
 import streamlit as st
-import numpy as np
-import pandas as pd
-from datetime import datetime
-import matplotlib.pyplot as plt
 
 st.markdown('### 🧬 通用PCR计算器')
 st.markdown('<font color="grey" size=3> 聚合酶链式反应，又称为PCR，是众所周知的分子生物学技术之一。本计算器用于计算PCR反应体系的原料用量。</font>', unsafe_allow_html=True)
